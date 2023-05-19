@@ -1,0 +1,29 @@
+from sklearn import datasets, linear_model
+import matplotlib.pyplot as plt
+
+# Load the Linnerud dataset
+linnerud = datasets.load_linnerud()
+
+# Extract the input (exercise variables) and target (number of situps) from the dataset
+X = linnerud.data  # Exercise variables (input)
+y = linnerud.target[:, 0]  # Number of situps (target)
+
+# Create a linear regression model
+model = linear_model.LinearRegression()
+
+# Fit the model using the input (X) and target (y)
+model.fit(X, y)
+
+# Predict the target variable for the waistline feature (first column in the data)
+waistline = X[:, 0]
+situps_pred = model.predict(X)
+
+# Plot the relationship between waistline and situps
+plt.scatter(waistline, y, color='black', label='Actual')  # Scatter plot of actual data
+plt.plot(waistline, situps_pred, color='blue', linewidth=3, label='Predicted')  # Line plot of predicted values
+plt.xlabel('Waistline')  # x-axis label
+plt.ylabel('Number of Situps')  # y-axis label
+plt.title('Relationship between Waistline and Situps')  # Plot title
+plt.legend()  # Display legend
+plt.show()  # Show the plot
+# The x-axis is labeled as "Waistline," the y-axis is labeled as "Number of Situps," and the plot title is set as "Relationship between Waistline and Situps." The legend is displayed to differentiate between the actual and predicted data points.
